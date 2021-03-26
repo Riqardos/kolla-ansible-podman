@@ -1,0 +1,527 @@
+Bootstrapping servers : ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] ************************************************************************************************************************************************************
+changed: [localhost]
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+
+PLAY [Gather facts for all hosts (if using --limit)] **********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ***********************************************************************************************************************************************************************************
+
+TASK [baremetal : include_tasks] ******************************************************************************************************************************************************************************
+included: /root/kolla-ansible/ansible/roles/baremetal/tasks/bootstrap-servers.yml for localhost
+
+TASK [baremetal : Ensure localhost in /etc/hosts] *************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] **********************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Generate /etc/hosts for all of the nodes] ***************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure /etc/cloud/cloud.cfg exists] *********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable cloud-init manage_etc_hosts] ********************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure sudo group is present] ***************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure kolla group is present] **************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ***********************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install CA certificates and gnupg packages] *************************************************************************************************************************************************
+skipping: [localhost] => (item=ca-certificates) 
+skipping: [localhost] => (item=apt-transport-https) 
+skipping: [localhost] => (item=gnupg) 
+
+TASK [baremetal : Ensure apt sources list directory exists] ***************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker apt gpg key] *****************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Enable docker apt repository] ***************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure yum repos directory exists] **********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Enable docker yum repository] ***************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure module_hotfixes enabled for docker] **************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Install docker rpm gpg key] *****************************************************************************************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "failed to fetch key at https://download.docker.com/linux/centos/gpg , error was: Request failed: <urlopen error [Errno 101] Network is unreachable>"}
+
+PLAY RECAP ****************************************************************************************************************************************************************************************************
+localhost                  : ok=12   changed=3    unreachable=0    failed=1    skipped=6    rescued=0    ignored=0   
+
+Command failed ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+Bootstrapping servers : ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] ************************************************************************************************************************************************************
+changed: [localhost]
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+
+PLAY [Gather facts for all hosts (if using --limit)] **********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ***********************************************************************************************************************************************************************************
+
+TASK [baremetal : include_tasks] ******************************************************************************************************************************************************************************
+included: /root/kolla-ansible/ansible/roles/baremetal/tasks/bootstrap-servers.yml for localhost
+
+TASK [baremetal : Ensure localhost in /etc/hosts] *************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] **********************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Generate /etc/hosts for all of the nodes] ***************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure /etc/cloud/cloud.cfg exists] *********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable cloud-init manage_etc_hosts] ********************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure sudo group is present] ***************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure kolla group is present] **************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ***********************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install CA certificates and gnupg packages] *************************************************************************************************************************************************
+skipping: [localhost] => (item=ca-certificates) 
+skipping: [localhost] => (item=apt-transport-https) 
+skipping: [localhost] => (item=gnupg) 
+
+TASK [baremetal : Ensure apt sources list directory exists] ***************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker apt gpg key] *****************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Enable docker apt repository] ***************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure yum repos directory exists] **********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Enable docker yum repository] ***************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure module_hotfixes enabled for docker] **************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Install docker rpm gpg key] *****************************************************************************************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "failed to fetch key at https://download.docker.com/linux/centos/gpg , error was: Request failed: <urlopen error [Errno 111] Connection refused>"}
+
+PLAY RECAP ****************************************************************************************************************************************************************************************************
+localhost                  : ok=12   changed=3    unreachable=0    failed=1    skipped=6    rescued=0    ignored=0   
+
+Command failed ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+Bootstrapping servers : ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] ************************************************************************************************************************************************************
+changed: [localhost]
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+
+PLAY [Gather facts for all hosts (if using --limit)] **********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ***********************************************************************************************************************************************************************************
+
+TASK [baremetal : include_tasks] ******************************************************************************************************************************************************************************
+included: /root/kolla-ansible/ansible/roles/baremetal/tasks/bootstrap-servers.yml for localhost
+
+TASK [baremetal : Ensure localhost in /etc/hosts] *************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] **********************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Generate /etc/hosts for all of the nodes] ***************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure /etc/cloud/cloud.cfg exists] *********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable cloud-init manage_etc_hosts] ********************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure sudo group is present] ***************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure kolla group is present] **************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ***********************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install CA certificates and gnupg packages] *************************************************************************************************************************************************
+skipping: [localhost] => (item=ca-certificates) 
+skipping: [localhost] => (item=apt-transport-https) 
+skipping: [localhost] => (item=gnupg) 
+
+TASK [baremetal : Ensure apt sources list directory exists] ***************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker apt gpg key] *****************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Enable docker apt repository] ***************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure yum repos directory exists] **********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Enable docker yum repository] ***************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure module_hotfixes enabled for docker] **************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Install docker rpm gpg key] *****************************************************************************************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "failed to fetch key at https://download.docker.com/linux/centos/gpg , error was: Request failed: <urlopen error [Errno 111] Connection refused>"}
+
+PLAY RECAP ****************************************************************************************************************************************************************************************************
+localhost                  : ok=12   changed=3    unreachable=0    failed=1    skipped=6    rescued=0    ignored=0   
+
+Command failed ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+Bootstrapping servers : ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] ************************************************************************************************************************************************************
+changed: [localhost]
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+
+PLAY [Gather facts for all hosts (if using --limit)] **********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ***********************************************************************************************************************************************************************************
+
+TASK [baremetal : include_tasks] ******************************************************************************************************************************************************************************
+included: /root/kolla-ansible/ansible/roles/baremetal/tasks/bootstrap-servers.yml for localhost
+
+TASK [baremetal : Ensure localhost in /etc/hosts] *************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] **********************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Generate /etc/hosts for all of the nodes] ***************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure /etc/cloud/cloud.cfg exists] *********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable cloud-init manage_etc_hosts] ********************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure sudo group is present] ***************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure kolla group is present] **************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ***********************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install CA certificates and gnupg packages] *************************************************************************************************************************************************
+skipping: [localhost] => (item=ca-certificates) 
+skipping: [localhost] => (item=apt-transport-https) 
+skipping: [localhost] => (item=gnupg) 
+
+TASK [baremetal : Ensure apt sources list directory exists] ***************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker apt gpg key] *****************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Enable docker apt repository] ***************************************************************************************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure yum repos directory exists] **********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Enable docker yum repository] ***************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure module_hotfixes enabled for docker] **************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Install docker rpm gpg key] *****************************************************************************************************************************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "failed to fetch key at https://download.docker.com/linux/centos/gpg , error was: Request failed: <urlopen error [Errno 101] Network is unreachable>"}
+
+PLAY RECAP ****************************************************************************************************************************************************************************************************
+localhost                  : ok=12   changed=3    unreachable=0    failed=1    skipped=6    rescued=0    ignored=0   
+
+Command failed ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+Bootstrapping servers : ansible-playbook -i ../../all-in-one -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /root/kolla-ansible/ansible/kolla-host.yml 
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] **************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] *********************************************************************
+changed: [localhost]
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+
+PLAY [Gather facts for all hosts (if using --limit)] *******************************************************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ********************************************************************************************
+
+TASK [baremetal : include_tasks] ***************************************************************************************
+included: /root/kolla-ansible/ansible/roles/baremetal/tasks/bootstrap-servers.yml for localhost
+
+TASK [baremetal : Ensure localhost in /etc/hosts] **********************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] *******************************************
+ok: [localhost]
+
+TASK [baremetal : Generate /etc/hosts for all of the nodes] ************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure /etc/cloud/cloud.cfg exists] ******************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable cloud-init manage_etc_hosts] *****************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure sudo group is present] ************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure kolla group is present] ***********************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ********************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install CA certificates and gnupg packages] **********************************************************
+skipping: [localhost] => (item=ca-certificates) 
+skipping: [localhost] => (item=apt-transport-https) 
+skipping: [localhost] => (item=gnupg) 
+
+TASK [baremetal : Ensure apt sources list directory exists] ************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker apt gpg key] **************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Enable docker apt repository] ************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure yum repos directory exists] *******************************************************************
+ok: [localhost]
+
+TASK [baremetal : Enable docker yum repository] ************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure module_hotfixes enabled for docker] ***********************************************************
+changed: [localhost]
+
+TASK [baremetal : Install docker rpm gpg key] **************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Update apt cache] ************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Set firewall default policy] *************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Check if firewalld is installed] *********************************************************************
+ok: [localhost]
+
+TASK [baremetal : Disable firewalld] ***********************************************************************************
+changed: [localhost] => (item=firewalld)
+
+TASK [baremetal : Check which containers are running] ******************************************************************
+ok: [localhost]
+
+TASK [baremetal : Install apt packages] ********************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install deltarpm packages] ***************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Install RPM packages] ********************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Start docker] ****************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Wait for Docker to start] ****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure containers are running after Docker upgrade] **************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install latest pip in the virtualenv] ****************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Install docker SDK for python] ***********************************************************************
+ok: [localhost]
+
+TASK [baremetal : Remove packages] *************************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Remove packages] *************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Create kolla user] ***********************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Add public key to kolla user authorized keys] ********************************************************
+changed: [localhost]
+
+TASK [baremetal : Grant kolla user passwordless sudo] ******************************************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure virtualenv has correct ownership] *************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure node_config_directory directory exists for user kolla] ****************************************
+changed: [localhost]
+
+TASK [baremetal : Ensure node_config_directory directory exists] *******************************************************
+skipping: [localhost]
+
+TASK [baremetal : Ensure docker config directory exists] ***************************************************************
+changed: [localhost]
+
+TASK [baremetal : Merge Zun docker config] *****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Warn about deprecations] *****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Setup docker insecure registries] ********************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Setup docker storage driver] *************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Setup docker runtime directory] **********************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Warn about docker default iptables] ******************************************************************
+ok: [localhost] => {
+    "msg": "Docker default iptables rules will be disabled by default from the Victoria 11.0.0 release. If you have any non-Kolla containers that need this functionality, you should plan a migration for this change, or set docker_disable_default_iptables_rules to false."
+}
+
+TASK [baremetal : Disable docker default iptables rules] ***************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Merge custom docker config] **************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Write docker config] *********************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Remove old docker options file] **********************************************************************
+ok: [localhost]
+
+TASK [baremetal : Ensure docker service directory exists] **************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Configure docker service] ****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Reload docker service file] **************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Get stat of libvirtd apparmor profile] ***************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Get stat of libvirtd apparmor disable profile] *******************************************************
+skipping: [localhost]
+
+TASK [baremetal : Remove apparmor profile for libvirt] *****************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Get stat of chronyd apparmor profile] ****************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Remove apparmor profile for chrony] ******************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Create docker group] *********************************************************************************
+ok: [localhost]
+
+TASK [baremetal : Add kolla user to docker group] **********************************************************************
+changed: [localhost]
+
+TASK [baremetal : Start docker] ****************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Restart docker] **************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Enable docker] ***************************************************************************************
+changed: [localhost]
+
+TASK [baremetal : Stop time service] ***********************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Stop time service] ***********************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Synchronizing time one-time] *************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Start time sync service] *****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Start time sync service] *****************************************************************************
+skipping: [localhost]
+
+TASK [baremetal : Change state of selinux] *****************************************************************************
+changed: [localhost]
+
+TASK [baremetal : include_tasks] ***************************************************************************************
+skipping: [localhost]
+
+PLAY RECAP *************************************************************************************************************
+localhost                  : ok=36   changed=19   unreachable=0    failed=0    skipped=35   rescued=0    ignored=0   
+

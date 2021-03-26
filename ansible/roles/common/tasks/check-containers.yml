@@ -1,0 +1,31 @@
+---
+- name: Creating log volume
+  become: true
+  containers.podman.podman_volume:
+    #action: "create_volume"
+    #common_options: "{{ docker_common_options }}"
+    name: "kolla_logs"
+    state: present
+  when: inventory_hostname in groups['kolla-logs']
+
+- name: Check common containers
+  become: true
+  containers.podman.podman_container:
+  #kolla_docker:
+    #action: "compare_container"
+    #common_options: "{{ docker_common_options }}"
+    name: "{{ item.value.container_name }}"
+    image: "{{ item.value.image }}"
+    volumes: "{{ item.value.volumes }}"
+    #dimensions: "{{ item.value.dimensions }}"
+    privileged: "{{ item.value.privileged | default(False) }}"
+    network: "host"
+    env: 
+      "{{ item.value.environment }}"
+      
+  when:
+    - item.value | service_enabled_and_mapped_to_host
+  with_dict: "{{ common_services }}"
+  notify:
+    - "Restart {{ item.key }} container"
+

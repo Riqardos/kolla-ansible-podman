@@ -1,0 +1,30 @@
+---
+- name: Create MariaDB volume
+  become: true
+  #kolla_docker:
+  containers.podman.podman_volume:
+    #action: "create_volume"
+    #common_options: "{{ docker_common_options }}"
+    name: "mariadb"
+  register: mariadb_volume
+
+- name: Check mariadb containers
+  become: true
+  #kolla_docker:
+  containers.podman.podman_container:
+    #action: "compare_container"
+    #common_options: "{{ docker_common_options }}"
+    state: started
+    network: "host"
+    name: "{{ item.value.container_name }}"
+    image: "{{ item.value.image }}"
+    volumes: "{{ item.value.volumes }}"
+    env:
+      KOLLA_CONFIG_STRATEGY: "{{ config_strategy }}"
+    #dimensions: "{{ item.value.dimensions }}"
+  when:
+    - inventory_hostname in groups[item.value.group]
+    - item.value.enabled | bool
+  with_dict: "{{ mariadb_services }}"
+  notify:
+    - "restart {{ item.key }}"

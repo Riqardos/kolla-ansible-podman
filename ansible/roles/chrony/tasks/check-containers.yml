@@ -1,0 +1,21 @@
+---
+- name: Check chrony container
+  become: true
+  containers.podman.podman_container:
+  #kolla_docker:
+   # action: "compare_container"
+   # common_options: "{{ docker_common_options }}"
+    name: "{{ item.value.container_name }}"
+    image: "{{ item.value.image }}"
+    privileged: "{{ item.value.privileged }}"
+    volumes: "{{ item.value.volumes }}"
+    network: "host"
+    env:
+      KOLLA_CONFIG_STRATEGY: "{{ config_strategy }}"
+    #dimensions: "{{ item.value.dimensions }}"
+  when:
+    - inventory_hostname in groups[item.value.group]
+    - item.value.enabled | bool
+  with_dict: "{{ chrony_services }}"
+  #notify:
+ #   - "Restart {{ item.key }} container"
